@@ -1,0 +1,319 @@
+<!doctype html>
+<html>
+<head>
+  
+  <script type="text/javascript" src="/lib/bip39.bundle.js"></script>
+  <script type="text/javascript" src="/lib/keccak256.bundle.js"></script>
+  <script type="text/javascript" src="/lib/aes.js"></script>
+  <script type="text/javascript" src="/lib/jquery.min.js"></script>
+
+  <script type="module" src="./main.js"></script>
+
+
+  <link rel="stylesheet" href="style/lib.css">
+  <link rel="stylesheet" href="style/font-awesome/css/all.css">
+  <link rel="stylesheet" href="style/custom.css">
+
+  <!-- font  -->
+  <link href="https://fonts.googleapis.com/css?family=Manrope:100,200,300,400,500,600,700,800,900|Manrope:100,200,300,400,500,600,700,800,900|Manrope:100,200,300,400,500,600,700,800,900|Manrope:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+</head>
+<body scroll="no" style="overflow: hidden">
+    <!-- Web3 Sandbox -->
+    <iframe id="_i_walletSandbox" src="/wallet/main.html"></iframe>
+
+    <!-- LANDING  -->
+    <section class="hide" id="_p_landing">
+        <div class="container">
+          <div class="row top-block"> 
+            <div class="col">
+              <span style="color:#e74c3c !important">ichigo</span> network</span>
+            </div>
+            <div class="col text-right"> 
+              <a href="https://ichigo.network/" target="_blank"><i class="fa fa-link"></i></a>
+            </div>
+
+          </div>
+          <div class="row title-middle-block"> 
+            <div class="">
+              <div class="col text-center">
+                <img class="mainLogo" src="/img/logo_128.png">
+              </div>
+              <div class="col text-center title-1"> 
+                ichigo wallet 
+              </div>
+              <div class="col text-center subtitle"> 
+                Create and manage your identity on the ichigo network
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center"> 
+              <button class="btn btn-1 full-length _nav_newWallet">New Wallet</button>
+              <button class="btn btn-2 full-length _nav_restoreWallet">Restore Wallet</button>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- NEW WALLET  -->
+    <style type="text/css">
+      .section-title{
+        font-weight: bold;
+        font-size: 15px;
+      }
+    </style>
+
+    <section class="hide" id="_p_newWallet">
+        <div class="container">
+          <div class="row top-block"> 
+            <div class="col-3">
+              <button class="btn-top _nav_backLanding"> 
+                <i class="fas fa-chevron-circle-left"></i>&nbsp Back 
+              </button>
+            </div>
+            <div class="col-6 text-center section-title"> 
+              Create a New Wallet
+            </div>
+            <div class="col-3 text-center"> 
+              
+            </div>
+          </div>
+          <div class="row">
+              <div class="in-description" style="padding: 20px 20px 0px">
+                <span>This is your seed phrase. It will allow you to add your wallet on other devices and restore it if you forget your password. Keep it secret and don't forget it !</span>
+              </div>
+          </div>
+          <div class="row " style="padding: 30px 20px">
+            <div class="block">
+              Seed Phrase
+              <button class="btn-cnt float-right" id="_f_generateSeedPhrase"><i class="fas fa-retweet"></i> Change</button>
+              <!-- <button class="btn-cnt float-right" id="_f_generateSeedPhrase">Copy</button> -->
+            </div>
+            <div class="">
+              <div class="in-passphrase" id="_v_seedPhrase">        
+              </div>
+            </div>
+          </div>
+          <div class="row" style ="font-size: 13px;padding: 15px 0px">
+            <div class="col"> 
+              <input type="checkbox" id="_v_checkConfirm"> 
+              <span id="_v_checkNotice"> I have noted my seed phrase and won't forget it</span>
+              <button class="btn btn-1 full-length" id="_f_createWallet">Create Wallet</button>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- RESTORE WALLET  -->
+    <section class="hide" id="_p_restoreWallet">
+        <div class="container">
+          <div class="row top-block top-title-block"> 
+            <div class="col-3">
+              <button class="btn-top _nav_backLanding">
+                <i class="fas fa-chevron-circle-left"></i>&nbsp Back  
+              </button>
+            </div>
+            <div class="col-6 text-center section-title"> 
+              Restore your Wallet
+            </div>
+            <div class="col-3 text-center"> 
+              
+            </div>
+          </div>
+          <div class="row" style="padding: 100px 0px">
+            <div class="col text-center"> 
+              <div class="in-description">Enter your seed phrase</div>
+              <textarea id="_v_seedphraseForRestore" name="Text1" cols="40" rows="8"></textarea>
+            </div>
+          </div>
+          <div class="row" style ="font-size: 13px;padding: 15px 0px">
+            <div class="col"> 
+              <button class="btn btn-1 full-length" id="_f_restoreWallet">Restore Wallet</button>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- SET PASSWORD  -->
+    <section class="hide" id="_p_setPassword">
+        <div class="container">
+          <div class="row top-block"> 
+            <div class="col-3">
+                <button class="btn-top _nav_backLanding"> 
+                  <i class="fas fa-chevron-circle-left"></i>&nbsp Back 
+                </button>
+            </div>
+            <div class="col-6 text-center section-title"> 
+              Setup your password
+            </div>
+            <div class="col-3 text-center"> 
+              
+            </div>
+          </div>
+          <div class="row" style="padding: 60px 20px">
+              <div class="in-description" >
+                <span>
+                  Setup a local password to secure your wallet. 
+                  This password will be require to unlock your wallet. if you forget this password you will be able to use your seed phrase to reset it 
+                </span>
+              </div>
+          </div>
+          <div class="row" style="padding: 10px 10px 0">
+            <div class="col text-center"> 
+              <div class="description"> Choose and confirm your password</div>
+              <div class="form-group">
+                <div><input class="form-control" type="password" id="_v_password"></div>
+                <div style="margin-top:5px"><input class="form-control" type="password" id="_v_password2"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style ="font-size: 13px;padding: 40px 0px 15px">
+            <div class="col" style="height: 45px; text-align:center;">
+              <span class="danger" id="_v_errorMessageSetup"> </span>
+            </div>
+          </div>
+
+          <div class="row" style ="font-size: 13px;padding: 5px 0px">
+            <div class="col"> 
+              <button class="btn btn-1 full-length" id="_f_setPassword">Done</button>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- HOME -->
+    <section class="hide" id="_p_home">
+        <div class="container">
+          <div class="row top-block top-title-block"> 
+            <div class="col-3">
+
+            </div>
+            <div class="col-6 text-center"> 
+              <!-- <img class="logo" src="/img/logow_32.png"> -->
+              ichigo <span style="color:#e74c3c !important">wallet</span>
+            </div>
+            <div class="col-3 text-center"> 
+              <button class="btn-top _nav_settings"> 
+                <i class="fas fa-cog"></i> 
+              </button>
+              <button class="btn-top" id="_f_lockWallet"> 
+                <i class="fas fa-lock"></i> 
+              </button>
+            </div>
+          </div>
+
+          <div class="row"> 
+            <div class="col text-center"> 
+              <button class="btn pull-right" > Lock </button>
+            </div>
+          </div>
+          <div class="row" style="padding: 30px 10px 0px"> 
+            <div class="col text-center title-2"> 
+              <div class="walletAddressTitle">Wallet Address</div>
+              <div id="_v_accountQrCode"></div>
+              <div class="walletAddressContent" id="_v_address"> ... </div>
+            </div>
+          </div>
+          <div class="row" style="padding: 75px 10px 0px">
+            <div class="col text-center"> 
+              <div class="tokenAmount"> 
+                <div class="btn-3" id="_f_refreshBalance"> <i class="fas fa-sync"></i></div>
+                <span id="_v_amount">...</span> ICHIGO 
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- LOCKED  -->
+    <section class="hide" id="_p_locked">
+        <div class="container">
+          <div class="row top-block top-title-block"> 
+            <div class="col-2">
+              
+            </div>
+            <div class="col-8 text-center"> 
+              ichigo wallet is locked
+            </div>
+            <div class="col-2 text-center"> 
+              
+            </div>
+          </div>
+          <div class="row" style="padding: 135px 10px 0;">
+            <div class="col" style="height: 45px; text-align:center;">
+                <span class="danger" id="_v_errorMessageUnlock"></span>
+            </div>
+          </div>
+          <div class="row" style="padding: 5px 10px 0px">
+            <div class="col text-center"> 
+              <div class="description"> Enter your password</div>
+              <div class="form-group">
+                <div><input class="form-control" type="password" id="_v_passwordUnlock"></div>
+                <button class="btn btn-1 full-length" id="_f_unlockWallet">Unlock</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="padding: 120px 10px 0;">
+              <div class="col forgotpasswordlink">               
+                Forgot your password ?<br>
+                <a href="#" class="_nav_restoreWallet"> Restore wallet with passphrase </a> 
+              </div>
+          </div>
+
+        </div>
+    </section>
+
+
+    <!-- SETTINGS  -->
+    <section class="hide" id="_p_settings">
+        <div class="container">
+          <div class="row top-block"> 
+            <div class="col-3">
+              <button class="btn-top _nav_home"> 
+                <i class="fas fa-chevron-circle-left"></i>&nbsp Back 
+              </button>
+            </div>
+            <div class="col-6 text-center section-title"> 
+              Settings
+            </div>
+            <div class="col-3 text-center"> 
+              
+            </div>
+          </div>
+          <div class="row">
+              <div class="in-description" style="padding: 25px 20px; text-align:center">
+                <span><i class="fas fa-exclamation-triangle"></i>&nbsp do not change these values unless you understand their meanings</span>
+              </div>
+          </div>
+          <div class="row " style="padding: 40px 20px 80px">
+            <div class="col text-center"> 
+              <div class="description"> Network </div>
+              <div class="form-group">
+                <select class="form-control" type="input" id="_v_network">
+                  <option>Test 1</option>
+                  <option>Test 2</option>
+                  <option disabled>Main</option>
+                </select>
+                <br>
+                <div class="description"> @Contract </div>
+                <div>
+                  <textarea class="form-control" type="input" id="_v_contractAddr" rows="2"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style ="font-size: 13px;padding: 15px 0px">
+            <div class="col"> 
+              <button class="btn btn-1 full-length" id="_f_saveSettings">Save</button>
+            </div>
+          </div>
+        </div>
+    </section>
+
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+    "manifest_version": 3,
+    "name": "ichigo wallet",
+    "version": "0.0.1",
+    "description": "Gateway to the ichigo network",
+
+    "permissions": [
+        "storage"
+    ],
+  
+    "background": { 
+        "service_worker": "account.js" 
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "css": [],
+            "js": ["content/content.js"],
+            "run_at": "document_start"
+        }
+    ],
+
+    "sandbox": {
+        "pages": ["wallet/main.html"]
+    },
+
+    "action": {
+        "default_popup": "front/index.html"
+    },
+    
+    "icons": {
+      "16": "img/logo_16.png",
+      "32": "img/logo_32.png",
+      "48": "img/logo_48.png",
+      "128": "img/logo_128.png"
+    }
+
+}

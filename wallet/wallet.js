@@ -1,8 +1,8 @@
 /* Wallet.js */
 /* require web3.js */
 
-var ICHIGOaddress = '0xca79E8c9f9D173C26bE2F7368299126B69a8195C'
-var infuraWSS = 'wss://rinkeby.infura.io/ws/v3/e23bd3273a914d94bdb9e669c84a7563'
+var ICHIGOaddress = '0x3F43819bfc98A2324e9dA5841f79547c9CdC7901'
+var infuraWSS = 'wss://rinkeby.infura.io/ws/v3/[insert api key here]'
 var web3 = new Web3(infuraWSS)
 
 export default class Wallet {

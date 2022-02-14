@@ -17,14 +17,13 @@ export default function Locked() {
 
 
     async function unlock(){
-        console.log('unlocking with : ', password)
 
         let {payload} = await TX.background.unlockAccount(password)
 
         if(payload.status == ACCOUNT_STATUS.unlocked ){
             navigate('/home')
         }else{
-          console.log(' wrong password')
+          console.error('wrong password')
         }
     }
 

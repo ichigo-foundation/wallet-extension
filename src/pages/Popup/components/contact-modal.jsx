@@ -19,8 +19,6 @@ export default function ContactModal(props){
         return
     }
 
-    console.log(address, address.length)
-
     if(!address || (address.length < 83 || address.length > 100) ){
         setModalWarning('The address is not valid')
         return

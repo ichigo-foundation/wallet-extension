@@ -28,7 +28,6 @@ export default function Contacts () {
     let {error, payload} = await TX.background.getContacts()
     if(error == 0){
         let tmp = Object.keys(payload.contacts).map( k => [payload.contacts[k].name, payload.contacts[k].address])
-        console.log(tmp.sort())
         setContacts(tmp)
     }
     else{

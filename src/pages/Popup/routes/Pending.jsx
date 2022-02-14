@@ -63,7 +63,6 @@ export default function Landing() {
       msg_str += '<tr><td>key count</td><td> '+keyCount+' </td></tr>'
       msg_str += '</table></tbody>'
       setMsg(msg_str)
-      // console.log(transaction.)
     }
 
     if(instruction === 'addContact'){
